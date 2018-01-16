@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}互评工具-打分{% endblock %}
+
+{% block styles %}
+{{ super() }} 
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/table.css') }}">
+{% endblock %}
+
+	
+{% block page_content %}
+<h3>{{ name }}你好，请为第{{ group }}组其他同学打分：</h3>
+<table>
+    <thead>
+    <tr>
+        <th>姓名</th>
+        <th>学号</th>
+        <th>打分</th>
+    </tr>
+    </thead>
+    <tbody>
+{% for data in dataList %}
+    <tr class='data'>
+        <td>{{data[0]}}</td>
+        <td>{{data[1]}}</td>
+    <td>
+    <select id="scores">
+        <option value="0" {% if data[2] == "0" %}selected{% endif %}>0</option>
+        <option value="1" {% if data[2] == "1" %}selected{% endif %}>1</option>
+        <option value="2" {% if data[2] == "2" %}selected{% endif %}>2</option>
+        <option value="3" {% if data[2] == "3" %}selected{% endif %}>3</option>
+        <option value="4" {% if data[2] == "4" %}selected{% endif %}>4</option>
+        <option value="5" {% if data[2] == "5" %}selected{% endif %}>5</option>
+        <option value="6" {% if data[2] == "6" %}selected{% endif %}>6</option>
+        <option value="7" {% if data[2] == "7" %}selected{% endif %}>7</option>
+        <option value="8" {% if data[2] == "8" %}selected{% endif %}>8</option>
+        <option value="9" {% if data[2] == "9" %}selected{% endif %}>9</option>
+        <option value="10" {% if data[2] == "10" %}selected{% endif %}>10</option>
+    </select>
+    </td>
+    </tr>
+{% endfor %}
+    <tr>
+        <td></td>
+        <td><input type="submit" value="提交"></td>
+        <td></td>
+    </tr>
+    </tbody>
+</table>
+{% endblock %}
+	
+{% block scripts %}
+{{ super() }} 
+<script src="{{ url_for('static', filename='js/table.js') }}"></script>
+{% endblock %}
+

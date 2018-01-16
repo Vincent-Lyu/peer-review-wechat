@@ -1,0 +1,7 @@
+th,td {
+    width:10%;
+}
+
+input {
+    float:center;
+}
