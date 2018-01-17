@@ -10,4 +10,5 @@ $("input").click(function(){
     });
     $.get('/post/'+scores);
     location.reload();
+    alert('提交成功')
 });
