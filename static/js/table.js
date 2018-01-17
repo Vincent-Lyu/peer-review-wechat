@@ -9,6 +9,5 @@ $("input").click(function(){
         scores.push(row);
     });
     $.get('/post/'+scores);
-    location.reload();
     alert('提交成功')
 });
