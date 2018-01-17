@@ -1,4 +1,4 @@
-from flask import Flask, render_template, session, redirect, url_for, flash
+from flask import Flask, render_template, session, redirect, url_for, flash, abort
 from flask.ext.script import Manager
 from flask.ext.bootstrap import Bootstrap
 from flask.ext.moment import Moment
@@ -136,6 +136,8 @@ def index():
 
 @app.route('/home/<uid>', methods=['GET'])
 def home(uid):
+    if uid not in USERS.keys():
+        abort(404)
     name = USERS[uid]['name']
     group = USERS[uid]['group']
     dataList = []
