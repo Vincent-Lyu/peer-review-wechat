@@ -9,5 +9,5 @@ $("input").click(function(){
         scores.push(row);
     });
     $.get('/post/'+scores);
-    alert('你已提交成功，若重复提交，以最后一次提交的分数为准')
+    alert('您已提交成功')
 });

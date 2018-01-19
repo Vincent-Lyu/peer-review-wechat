@@ -157,9 +157,10 @@ def home(uid):
             resultList.append((sname,sid,"0"))
 
     if flashInfo:
-        flash('你已经打过分了，分数如下：')
+        flash('您已经打过分了，不能再更改或查阅分数')
+        resultList = None
     else:
-        flash('你尚未打分')
+        flash('您尚未打分, 注：您只能提交一次分数')
     return render_template('table.html', dataList=resultList, name=name, group=group)
 
 @app.route('/post/<scores>', methods=['GET'])
@@ -180,7 +181,8 @@ def post(scores):
     SCORES[whoami] = dict(res)
     
     import datetime
-    with open('{0}{1}.log'.format(SCORES_PATH, datetime.datetime.now()), 'w') as fout:
+    import time
+    with open('{0}{1}_{2}.log'.format(SCORES_PATH, datetime.datetime.now().date(), int(round(time.time()*1000))), 'w') as fout:
         json.dump(SCORES, fout)
 
     return redirect('/home/' + whoami)

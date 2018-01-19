@@ -10,7 +10,9 @@
 
 	
 {% block page_content %}
+{% if dataList %}
 <h3>{{ name }}你好，请为第{{ group }}组其他同学打分：</h3>
+
 <table>
     <thead>
     <tr>
@@ -48,6 +50,11 @@
     </tr>
     </tbody>
 </table>
+{% else %}
+<h3 style="text-align:center">{{ name }}, 你的打分结果已保存</h3>
+<img style="margin-left:40%; margin-right:40%; width:20%;"
+     src="{{ url_for('static', filename='images/thanks.png') }}">
+{% endif %}
 {% endblock %}
 	
 {% block scripts %}
