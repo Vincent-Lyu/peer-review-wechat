@@ -181,8 +181,7 @@ def post(scores):
     SCORES[whoami] = dict(res)
     
     import datetime
-    import time
-    with open('{0}{1}_{2}.log'.format(SCORES_PATH, datetime.datetime.now().date(), int(round(time.time()*1000))), 'w') as fout:
+    with open('{0}{1}.log'.format(SCORES_PATH, datetime.datetime.now()), 'w') as fout:
         json.dump(SCORES, fout)
 
     return redirect('/home/' + whoami)
