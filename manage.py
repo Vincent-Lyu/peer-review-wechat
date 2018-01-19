@@ -178,11 +178,14 @@ def post(scores):
         if USERS[uid]['group'] == whichgroup and uid not in students:
             whoami = uid
 
-    SCORES[whoami] = dict(res)
+    if whoami in SCORES.keys():
+        flash('您已打过分，不可以重复提交！')
+    else:
+        SCORES[whoami] = dict(res)
     
-    import datetime
-    with open('{0}{1}.log'.format(SCORES_PATH, datetime.datetime.now()), 'w') as fout:
-        json.dump(SCORES, fout)
+        import datetime
+        with open('{0}{1}.log'.format(SCORES_PATH, datetime.datetime.now()), 'w') as fout:
+            json.dump(SCORES, fout)
 
     return redirect('/home/' + whoami)
 
